@@ -7,8 +7,6 @@ import requests
 import json
 import sys
 
-import requests
-
 access_token = 'ZjBkYWJhZjYtNmRhNS00NDgyLWEyYWYtNmYyZmE5MTRhMDczMDIwYmEwYzgtZmRm_P0A1_5d96674f-de50-43d7-ae6b-8071b71cb457'
 url = 'https://webexapis.com/v1/rooms'
 headers = {
