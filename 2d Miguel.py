@@ -17,33 +17,59 @@ headers = {
 }
 params={'max': '100'}
 res = requests.get(url, headers=headers, params=params)
-print(res.json()['items'][0]['title'])
+salas=res.json()
 
-#sala = (json.dumps(res.json()["title"]))
-# 1=existe; 0 = no existe
-sala = 0
-print(sala)
-if sala == 1:
-   print("Existe")
+#CREAMOS UNA FUNCIÓN QUE VERIFIQUE SI ES QUE EXISTE LA SALA
+def existeSala(salasResponse,salaBuscada):
+      print('Buscando',salaBuscada)      
+      for sala in salasResponse['items']:            
+            if str(sala['title']) == salaBuscada:
+               print(sala)
+               return sala['id']
+      return False
+
+nombreSala='Devnet-GroupPsiA'
+ExisteSala = existeSala(salas,nombreSala)
+
+if(ExisteSala!=False):
+   print('Existe con id:',ExisteSala)  
+   urlMiembros = 'https://webexapis.com/v1/memberships'
+   #paramsListaMiembros={'roomId': ExisteSala}   
+   #resLista = requests.get(urlMiembros, headers=headers, json=paramsListaMiembros)   
+   resLista=requests.get(urlMiembros, headers=headers)
+   resListaJSON = resLista.json()
+   for miembro in resListaJSON['items']:
+          #print(miembro)
+          #if str(miembro['roomId']) == idSala:
+             print(miembro['personEmail'])
+
+   #FALTA ENVIAR EL MENSAJE DEL DOCKER
+else:
+   print('No existe, creando sala...')          
+   
+   params={'title': nombreSala}
+   res = requests.post(url, headers=headers, json=params)
+   
+   room_id = existeSala(salas,nombreSala)
+   #room_id='Y2lzY29zcGFyazovL3VybjpURUFNOnVzLXdlc3QtMl9yL1JPT00vMDY5N2Q2ZDAtNWZlMC0xMWVjLWI1MWMtODcwNTJiY2YxODcx'
+   url = 'https://webexapis.com/v1/memberships'
+
+   print('Añadiendo David Carrillo')
+   person_email = 'davidcarrilloyepez@hotmail.com'
+   params = {'roomId': room_id, 'personEmail': person_email}
+   res = requests.post(url, headers=headers, json=params)
    print(res.json())
-else: 
-    print("no existe")
-    headers = {
-    'Authorization': 'Bearer {}'.format(access_token),
-    'Content-Type': 'application/json'
-    }
-    params={'title': 'Devnet-GroupPsi_b'}
-    res = requests.post(url, headers=headers, json=params)
-    #print(res.json())
-    #room_id = ''
-    #person_email = 'davidcarrilloyepez@hotmail.com'
-    #url = 'https://webexapis.com/v1/memberships'
-    #headers = {
-    #    'Authorization': 'Bearer {}'.format(access_token),
-    #    'Content-Type': 'application/json'
-    #}
-    #params = {'roomId': room_id, 'personEmail': person_email}
-    #res = requests.post(url, headers=headers, json=params)
-    #print(res.json())
-    
+
+   print('Añadiendo Gregorio Urena')
+   person_email = 'fernando.urena@sistemas.edu.bo'
+   params = {'roomId': room_id, 'personEmail': person_email}
+   res = requests.post(url, headers=headers, json=params)
+   print(res.json())
+
+   print('Añadiendo Erika Viña')
+   person_email = 'lexierika@gmail.com'
+   params = {'roomId': room_id, 'personEmail': person_email}
+   res = requests.post(url, headers=headers, json=params)
+   print(res.json())
+
 
