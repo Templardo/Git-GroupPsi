@@ -3,24 +3,22 @@
 import json
 import requests
 requests.packages.urllib3.disable_warnings()
-api_url = "https://10.10.0.254/restconf/data/ietf-interfaces:interfaces/interface=Loopback3"
-
+api_url = "https://10.10.0.254/restconf/data/ietf-interfaces:interfaces/interface=Loopback6"
 headers = { "Accept": "application/yang-data+json",
              "Content-type": "application/yang-data+json"
             }
 basicauth = ("admin","cisco")
-
 yangConfig = {
     "ietf-interfaces:interface": {
-        "name": "Loopback3",
+        "name": "Loopback6",
         "description": "My second RESTCONF loopback",
         "type": "iana-if-type:softwareLoopback",
         "enabled": True,
         "ietf-ip:ipv4": {
             "address": [
                 {
-                    "ip": "10.3.1.1",
-                    "netmask": "255.255.255.0"
+                    "ip": "10.1.1.6",
+                    "netmask": "255.255.0.0"
                 }
             ]           
         },
