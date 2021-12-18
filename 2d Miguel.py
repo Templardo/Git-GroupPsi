@@ -17,12 +17,15 @@ headers = {
 }
 params={'max': '100'}
 res = requests.get(url, headers=headers, params=params)
-#print(res.json())
+print(res.json()['items'][0]['title'])
 
-sala = (json.dumps(res.json()["title"]))
+#sala = (json.dumps(res.json()["title"]))
+# 1=existe; 0 = no existe
+sala = 0
 print(sala)
-if sala == "Devnet-GroupPsi_b":
+if sala == 1:
    print("Existe")
+   print(res.json())
 else: 
     print("no existe")
     headers = {
@@ -31,5 +34,16 @@ else:
     }
     params={'title': 'Devnet-GroupPsi_b'}
     res = requests.post(url, headers=headers, json=params)
-    print(res.json())
+    #print(res.json())
+    #room_id = ''
+    #person_email = 'davidcarrilloyepez@hotmail.com'
+    #url = 'https://webexapis.com/v1/memberships'
+    #headers = {
+    #    'Authorization': 'Bearer {}'.format(access_token),
+    #    'Content-Type': 'application/json'
+    #}
+    #params = {'roomId': room_id, 'personEmail': person_email}
+    #res = requests.post(url, headers=headers, json=params)
+    #print(res.json())
+    
 
