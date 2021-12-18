@@ -21,27 +21,34 @@ salas=res.json()
 
 #CREAMOS UNA FUNCIÓN QUE VERIFIQUE SI ES QUE EXISTE LA SALA
 def existeSala(salasResponse,salaBuscada):
-      print('Buscando',salaBuscada)      
+      print('Buscando',salaBuscada)       
       for sala in salasResponse['items']:            
             if str(sala['title']) == salaBuscada:
-               print(sala)
-               return sala['id']
+                  print("\n\n",sala,"\n\n")                    
+                  return sala['id']
       return False
 
-nombreSala='Devnet-GroupPsiA'
+nombreSala='Devnet-GroupPsi9'
 ExisteSala = existeSala(salas,nombreSala)
 
 if(ExisteSala!=False):
    print('Existe con id:',ExisteSala)  
-   urlMiembros = 'https://webexapis.com/v1/memberships'
-   #paramsListaMiembros={'roomId': ExisteSala}   
-   #resLista = requests.get(urlMiembros, headers=headers, json=paramsListaMiembros)   
-   resLista=requests.get(urlMiembros, headers=headers)
-   resListaJSON = resLista.json()
-   for miembro in resListaJSON['items']:
-          #print(miembro)
-          #if str(miembro['roomId']) == idSala:
-             print(miembro['personEmail'])
+
+   room_id = ExisteSala
+
+   urlmiembros = 'https://webexapis.com/v1/memberships'
+   headers = {
+      'Authorization': 'Bearer {}'.format(access_token),
+       'Content-Type': 'application/json'
+   }
+   params = {'roomId': room_id}
+   resMiembros = requests.get(urlmiembros, headers=headers, params=params)
+   personas = resMiembros.json()
+   
+   print("PARTICIPANTES:")
+   for miembro in personas['items']:
+          print(miembro['personEmail'])
+
 
    #FALTA ENVIAR EL MENSAJE DEL DOCKER
 else:
@@ -49,8 +56,14 @@ else:
    
    params={'title': nombreSala}
    res = requests.post(url, headers=headers, json=params)
-   #falta enviar mensaje aquì
-   room_id = existeSala(salas, nombreSala)
+   print(res.json())
+   
+   params={'max': '100'}
+   res = requests.get(url, headers=headers, params=params)
+   salas=res.json()
+
+   room_id = existeSala(salas,nombreSala)
+   print(room_id)
    #room_id='Y2lzY29zcGFyazovL3VybjpURUFNOnVzLXdlc3QtMl9yL1JPT00vMDY5N2Q2ZDAtNWZlMC0xMWVjLWI1MWMtODcwNTJiY2YxODcx'
    url = 'https://webexapis.com/v1/memberships'
 
