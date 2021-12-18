@@ -21,25 +21,33 @@ salas=res.json()
 
 #CREAMOS UNA FUNCIÓN QUE VERIFIQUE SI ES QUE EXISTE LA SALA
 def existeSala(salasResponse,salaBuscada):
-      print('Buscando',salaBuscada)      
+      print('Buscando',salaBuscada)       
       for sala in salasResponse['items']:            
             if str(sala['title']) == salaBuscada:
-               print(sala)
-               return sala['id']
+                  print("\n\n",sala,"\n\n")                    
+                  return sala['id']
       return False
 
-nombreSala='Devnet-Gro'
+nombreSala='Devnet-GroupPsi9'
 ExisteSala = existeSala(salas,nombreSala)
 
 if(ExisteSala!=False):
    print('Existe con id:',ExisteSala)  
-   urlMiembros = 'https://webexapis.com/v1/memberships'
-  
+
+   room_id = ExisteSala
+
+   urlmiembros = 'https://webexapis.com/v1/memberships'
+   headers = {
+      'Authorization': 'Bearer {}'.format(access_token),
+       'Content-Type': 'application/json'
+   }
+   params = {'roomId': room_id}
+   resMiembros = requests.get(urlmiembros, headers=headers, params=params)
+   personas = resMiembros.json()
+   
    print("PARTICIPANTES:")
-   print('miguel.reynolds@gmail.com')
-   print('davidcarrilloyepez@hotmail.com')
-   print('fernando.urena@sistemas.edu.bo')
-   print('lexierika@gmail.com')
+   for miembro in personas['items']:
+          print(miembro['personEmail'])
 
 
    #FALTA ENVIAR EL MENSAJE DEL DOCKER
