@@ -1,26 +1,27 @@
-#3.	GITs:
-#Crear un repositorio en GitHub con el nombre del grupo: Git-GroupPsi, los 4 miembros del grupo deben tener cuentas en GitHub y estar habilitados para enviar sus scripts Python al repositorio en GitHub. Cada miembro del grupo debe identificarse como propietario del script que haya elaborado.
+#2c. Crear un script para crear en el router Cisco CSR1000v, 
+# una interface Loopback 6, con la dirección IP 10.10.1.6/16 y una
+# ruta default usando esa interface Loopback como salida.
+# Mostrar como salida del script, la tabla de rutas 
+
 import json
 import requests
 requests.packages.urllib3.disable_warnings()
-api_url = "https://10.10.0.254/restconf/data/ietf-interfaces:interfaces/interface=Loopback3"
-
+api_url = "https://10.10.0.254/restconf/data/ietf-interfaces:interfaces/interface=Loopback6"
 headers = { "Accept": "application/yang-data+json",
              "Content-type": "application/yang-data+json"
             }
 basicauth = ("admin","cisco")
-
 yangConfig = {
     "ietf-interfaces:interface": {
-        "name": "Loopback3",
+        "name": "Loopback6",
         "description": "My second RESTCONF loopback",
         "type": "iana-if-type:softwareLoopback",
         "enabled": True,
         "ietf-ip:ipv4": {
             "address": [
                 {
-                    "ip": "10.3.1.1",
-                    "netmask": "255.255.255.0"
+                    "ip": "10.1.1.6",
+                    "netmask": "255.255.0.0"
                 }
             ]           
         },
