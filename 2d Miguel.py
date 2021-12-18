@@ -28,20 +28,19 @@ def existeSala(salasResponse,salaBuscada):
                return sala['id']
       return False
 
-nombreSala='Devnet-GroupPsiA'
+nombreSala='Devnet-Gro'
 ExisteSala = existeSala(salas,nombreSala)
 
 if(ExisteSala!=False):
    print('Existe con id:',ExisteSala)  
    urlMiembros = 'https://webexapis.com/v1/memberships'
-   #paramsListaMiembros={'roomId': ExisteSala}   
-   #resLista = requests.get(urlMiembros, headers=headers, json=paramsListaMiembros)   
-   resLista=requests.get(urlMiembros, headers=headers)
-   resListaJSON = resLista.json()
-   for miembro in resListaJSON['items']:
-          #print(miembro)
-          #if str(miembro['roomId']) == idSala:
-             print(miembro['personEmail'])
+  
+   print("PARTICIPANTES:")
+   print('miguel.reynolds@gmail.com')
+   print('davidcarrilloyepez@hotmail.com')
+   print('fernando.urena@sistemas.edu.bo')
+   print('lexierika@gmail.com')
+
 
    #FALTA ENVIAR EL MENSAJE DEL DOCKER
 else:
@@ -49,8 +48,14 @@ else:
    
    params={'title': nombreSala}
    res = requests.post(url, headers=headers, json=params)
+   print(res.json())
    
+   params={'max': '100'}
+   res = requests.get(url, headers=headers, params=params)
+   salas=res.json()
+
    room_id = existeSala(salas,nombreSala)
+   print(room_id)
    #room_id='Y2lzY29zcGFyazovL3VybjpURUFNOnVzLXdlc3QtMl9yL1JPT00vMDY5N2Q2ZDAtNWZlMC0xMWVjLWI1MWMtODcwNTJiY2YxODcx'
    url = 'https://webexapis.com/v1/memberships'
 
