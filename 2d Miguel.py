@@ -28,7 +28,7 @@ def existeSala(salasResponse,salaBuscada):
                   return sala['id']
       return False
 
-nombreSala='Devnet-GroupPsi9'
+nombreSala='Devnet-GroupPsi6'
 ExisteSala = existeSala(salas,nombreSala)
 
 if(ExisteSala!=False):
@@ -49,8 +49,17 @@ if(ExisteSala!=False):
    for miembro in personas['items']:
           print(miembro['personEmail'])
 
+   #ENVIA EL MENSAJE DEL DOCKER
+   message = 'https://hub.docker.com/layers/176846768/ferurena72/sampleapp/v1/images/sha256-3f29b3a4f979a5fe055b4443fa298c0f70403567fe2c4478f1cd2de44be30692?context=repo'
+   url = 'https://webexapis.com/v1/messages'
+   headers = {
+      'Authorization': 'Bearer {}'.format(access_token), 
+      'Content-Type': 'application/json'
+   }
+   params = {'roomId': room_id, 'markdown': message}
+   res = requests.post(url, headers=headers, json=params) 
+   print(res.json())
 
-   #FALTA ENVIAR EL MENSAJE DEL DOCKER
 else:
    print('No existe, creando sala...')          
    
@@ -79,10 +88,14 @@ else:
    res = requests.post(url, headers=headers, json=params)
    print(res.json())
 
+   print('Añadiendo Miguel Reynolds')
+   person_email = 'miguel.reynolds@gmail.com'
+   params = {'roomId': room_id, 'personEmail': person_email}
+   res = requests.post(url, headers=headers, json=params)
+   print(res.json())
+
    print('Añadiendo Erika Viña')
    person_email = 'lexierika@gmail.com'
    params = {'roomId': room_id, 'personEmail': person_email}
    res = requests.post(url, headers=headers, json=params)
    print(res.json())
-
-
