@@ -28,7 +28,7 @@ def existeSala(salasResponse,salaBuscada):
                   return sala['id']
       return False
 
-nombreSala='Devnet-GroupPsi6'
+nombreSala='Devnet-GroupPsi-6'
 ExisteSala = existeSala(salas,nombreSala)
 
 if(ExisteSala!=False):
