@@ -49,8 +49,8 @@ else:
    
    params={'title': nombreSala}
    res = requests.post(url, headers=headers, json=params)
-   
-   room_id = existeSala(salas,nombreSala)
+   #falta enviar mensaje aquì
+   room_id = existeSala(salas, nombreSala)
    #room_id='Y2lzY29zcGFyazovL3VybjpURUFNOnVzLXdlc3QtMl9yL1JPT00vMDY5N2Q2ZDAtNWZlMC0xMWVjLWI1MWMtODcwNTJiY2YxODcx'
    url = 'https://webexapis.com/v1/memberships'
 

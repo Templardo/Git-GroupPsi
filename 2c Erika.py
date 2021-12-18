@@ -1,5 +1,8 @@
-#3.	GITs:
-#Crear un repositorio en GitHub con el nombre del grupo: Git-GroupPsi, los 4 miembros del grupo deben tener cuentas en GitHub y estar habilitados para enviar sus scripts Python al repositorio en GitHub. Cada miembro del grupo debe identificarse como propietario del script que haya elaborado.
+#2c. Crear un script para crear en el router Cisco CSR1000v, 
+# una interface Loopback 6, con la dirección IP 10.10.1.6/16 y una
+# ruta default usando esa interface Loopback como salida.
+# Mostrar como salida del script, la tabla de rutas 
+
 import json
 import requests
 requests.packages.urllib3.disable_warnings()
