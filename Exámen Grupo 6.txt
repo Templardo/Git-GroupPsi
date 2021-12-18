@@ -7,16 +7,36 @@ d.	Habilitar restconf solamente.
 e.	Permitir el acceso con SSH desde su PC para lo cual utilice la dirección IP 10.10.0.1/16 en el adaptador virtual que haya elegido.
 
 2.	PYTHON:
-a.	Crear un script para acceder al Dashboard Meraki (Always On) el cual debe tener tres opciones:
-i.	Crear en el Dashboard de Meraki una organización llamada Devnet-GroupPsi , en caso ya exista el grupo debe mostrar su el ID de la organización.
-ii.	Crear una red llamada Network-Psi, en caso ya exista debe permitir borrarla.
-iii.	API-Key: 76d52810510e74aac786e0b34dcb52c42d3fac0b, en caso no sea correcta debe permitir ingresarla mediante el teclado.
-b.	Crear un script para acceder al DNA center (Always On), el cual debe mostrar: todos los dispositivos registrados (inventario) con sus respectivas direcciones IP de gestión y el número de serie de cada equipo, en formato de texto ordenado (no en formato JSON). El script deberá generar el token de acceso de ser necesario.
-c.	Crear un script para crear en el router Cisco CSR1000v, una interface Loopback 6, con la dirección IP 10.10.1.6/16 y una ruta default usando esa interface Loopback como salida. Mostrar como salida del script, la tabla de rutas.
-d.	Crear un script para crear un Room con el nombre “Devnet-GroupPsi”, en este Room deben estar incluidos todos los integrantes del grupo. En caso ya exista el Room, el script debe mostrar el Room-ID y todos los correos de todos los integrantes. Luego debe enviar un mensaje al Room con la ruta del contenedor en el Docker Hub.
+a.	(Gregorio)Crear un script para acceder al Dashboard Meraki (Always On) 
+    el cual debe tener tres opciones:
+    i.	 Crear en el Dashboard de Meraki una organización llamada Devnet-GroupPsi,
+         en caso ya exista el grupo debe mostrar su el ID de la organización.
+    ii.	 Crear una red llamada Network-Psi, en caso ya exista debe permitir borrarla.
+    iii. API-Key: 76d52810510e74aac786e0b34dcb52c42d3fac0b, en caso no sea correcta 
+         debe permitir ingresarla mediante el teclado.
+
+b.	(David)Crear un script para acceder al DNA center (Always On), el cual debe mostrar: 
+    todos los dispositivos registrados (inventario) con sus respectivas direcciones IP
+    de gestión y el número de serie de cada equipo, en formato de texto ordenado
+    (no en formato JSON). El script deberá generar el token de acceso de ser necesario.
+
+c.	Crear un script para crear en el router Cisco CSR1000v, una interface Loopback 6,
+    con la dirección IP 10.10.1.6/16 y una ruta default usando esa interface Loopback
+    como salida. Mostrar como salida del script, la tabla de rutas.
+
+d.	(Miguel) Crear un script para crear un Room con el nombre “Devnet-GroupPsi”, en este Room
+    deben estar incluidos todos los integrantes del grupo.
+    
+    En caso ya exista el Room, el script debe mostrar el Room-ID y todos los correos
+    de todos los integrantes. Luego debe enviar un mensaje al Room con la ruta del
+    contenedor en el Docker Hub.
 
 3.	GIT:
-Crear un repositorio en GitHub con el nombre del grupo: Git-GroupPsi, los 4 miembros del grupo deben tener cuentas en GitHub y estar habilitados para enviar sus scripts Python al repositorio en GitHub. Cada miembro del grupo debe identificarse como propietario del script que haya elaborado.
+Crear un repositorio en GitHub con el nombre del grupo: Git-GroupPsi,
+los 4 miembros del grupo deben tener cuentas en GitHub y
+estar habilitados para enviar sus scripts Python al repositorio en GitHub. 
+
+Cada miembro del grupo debe identificarse como propietario del script que haya elaborado.
 
 4.	DOCKER:
 a.	Crear un contenedor Docker llamada Docker-GroupPsi, que incluya Python y todo lo necesario para clonar y ejecutar los scripts del paso 2.
