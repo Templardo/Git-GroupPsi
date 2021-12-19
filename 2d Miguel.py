@@ -26,7 +26,7 @@ def existeSala(salasResponse,salaBuscada):
                   return sala['id']
       return False
 
-nombreSala='Devnet-GroupPsi-6'
+nombreSala='Devnet-GroupPsi'
 ExisteSala = existeSala(salas,nombreSala)
 
 if(ExisteSala!=False):
@@ -48,7 +48,7 @@ if(ExisteSala!=False):
           print(miembro['personEmail'])
 
    #ENVIA EL MENSAJE DEL DOCKER
-   message = 'https://hub.docker.com/layers/176846768/ferurena72/sampleapp/v1/images/sha256-3f29b3a4f979a5fe055b4443fa298c0f70403567fe2c4478f1cd2de44be30692?context=repo'
+   message = 'https://hub.docker.com/r/ferurena72/dockergrouppsi'
    url = 'https://webexapis.com/v1/messages'
    headers = {
       'Authorization': 'Bearer {}'.format(access_token), 
