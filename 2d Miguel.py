@@ -7,7 +7,7 @@ import requests
 import json
 import sys
 
-access_token = 'ZjBkYWJhZjYtNmRhNS00NDgyLWEyYWYtNmYyZmE5MTRhMDczMDIwYmEwYzgtZmRm_P0A1_5d96674f-de50-43d7-ae6b-8071b71cb457'
+access_token = 'Y2M5YmEyZTMtOWI4NS00MGVlLWEwN2QtNmNhOWFiMWE5MDJiZTA5M2JjMWItYWE1_P0A1_5d96674f-de50-43d7-ae6b-8071b71cb457'
 url = 'https://webexapis.com/v1/rooms'
 headers = {
     'Authorization': 'Bearer {}'.format(access_token),
